@@ -11,7 +11,7 @@ Se recomienda crear un entorno virtual y luego instalar las dependencias:
 ```bash
 python -m venv venv
 source venv/bin/activate
-pip install flask
+pip install -r requirements.txt
 ```
 
 ## Uso desde la línea de comandos
