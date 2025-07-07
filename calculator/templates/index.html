@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora Python</title>
+    <script>
+    async function calcular() {
+        const numero1 = parseFloat(document.getElementById('numero1').value);
+        const numero2 = parseFloat(document.getElementById('numero2').value);
+        const operacion = document.getElementById('operacion').value;
+
+        const response = await fetch('/calcular', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ numero1, numero2, operacion })
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+            document.getElementById('resultado').innerText = 'Resultado: ' + data.resultado;
+        } else {
+            document.getElementById('resultado').innerText = 'Error: ' + data.error;
+        }
+    }
+    </script>
+</head>
+<body>
+    <h1>Calculadora Python</h1>
+    <input id="numero1" type="number" placeholder="Número 1">
+    <select id="operacion">
+        <option value="sumar">+</option>
+        <option value="restar">-</option>
+        <option value="multiplicar">*</option>
+        <option value="dividir">/</option>
+    </select>
+    <input id="numero2" type="number" placeholder="Número 2">
+    <button onclick="calcular()">Calcular</button>
+    <p id="resultado">Resultado:</p>
+</body>
+</html>
