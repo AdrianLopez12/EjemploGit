@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UTC a Ecuador</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 30px 10px;
+      margin: 0;
+      background-color: #f4f4f4;
+    }
+    h2 {
+      font-size: 1.5em;
+      margin-bottom: 20px;
+    }
+    label, select, button, p {
+      display: block;
+      width: 100%;
+      max-width: 300px;
+      margin: 10px auto;
+      font-size: 1.2em;
+    }
+    select, button {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #resultado {
+      font-weight: bold;
+      color: #333;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Conversor UTC → Ecuador</h2>
+  <label for="utcHour">Selecciona hora en UTC:</label>
+  <select id="utcHour">
+    <script>
+      for (let i = 0; i < 24; i++) {
+        document.write(`<option value="${i}">${i.toString().padStart(2, '0')}:00</option>`);
+      }
+    </script>
+  </select>
+  <button onclick="convertir()">Convertir</button>
+  <p id="resultado"></p>
+
+  <script>
+    function convertir() {
+      const utcHour = parseInt(document.getElementById("utcHour").value);
+      // Ecuador is UTC-5 all year (no daylight saving time)
+      let ecuadorHour = (utcHour - 5 + 24) % 24;
+      let resultado = `${ecuadorHour.toString().padStart(2, '0')}:00`;
+      document.getElementById("resultado").innerText = `Hora en Ecuador: ${resultado}`;
+    }
+  </script>
+</body>
+</html>
